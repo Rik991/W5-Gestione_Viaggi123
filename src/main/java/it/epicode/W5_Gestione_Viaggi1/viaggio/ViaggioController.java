@@ -5,12 +5,14 @@ package it.epicode.W5_Gestione_Viaggi1.viaggio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/viaggi")
+@PreAuthorize("isAuthenticated()")
 public class ViaggioController {
 
     @Autowired
@@ -23,6 +25,7 @@ public class ViaggioController {
 
         return ResponseEntity.ok(viaggi);
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Viaggio> findViaggioById(@PathVariable Long id){

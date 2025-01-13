@@ -59,6 +59,7 @@ public class DipendenteController {
         return ResponseEntity.ok(dipendenteService.updateDipendente(id, modifiedDipendente));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteDipendente(@PathVariable Long id) {
         dipendenteService.deleteDipendente(id);
